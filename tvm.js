@@ -1,3 +1,5 @@
+// FUNDAMENTAL TVM FORMULAS
+
 function FVPresentSum(PV, n, i)
 //Returns the Future Value of a Present Sum
 //PV = Present Value
@@ -166,3 +168,5 @@ function FVGrowingAnnuityDue(A, n, i, g)
 		return A * n * Math.pow(1+i , n);
 	}
 }
+
+// APPLIED TVM FORMULAS
