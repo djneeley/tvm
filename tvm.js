@@ -95,10 +95,20 @@ function PVGrowingAnnuityDue1stPmt(PV, n, i, g)
 function PVPerpetuity(A, i)
 //returns the Present Value of a Perpetuity
 //A = Annuity Payment
-//i = Number of Periods
+//i = Interest Rate
 //https://en.wikipedia.org/wiki/Time_value_of_money#Present_value_of_a_perpetuity
 {
 	return A / i;
+}
+
+function PVGrowingPerpetuity(A, i, g)
+//returns the Present Value of a Growing Perpetuity
+//A = Annuity Payment
+//i = Interest Rate
+//g = Growth Rate
+//http://financeformulas.net/Present_Value_of_Growing_Perpetuity.html
+{
+	return A / (i - g);
 }
 
 function FutureValueOfGrowingAnnuity(A, n, i, g)
