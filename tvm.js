@@ -199,3 +199,12 @@ function RICapitalPreservation(S, r)
 	//return S * r / (1 + r); //Alternate calculation that provides same result with no dependencies
 	return S - PVFutureSum(S, 1, r);
 }
+
+function RIGrowingPerpetuity(S, r, i)
+//Returns the first year income from retirement savings using the Growing Perpetuity Method
+//S = Savings available for retirement income at retirement
+//r = Investment return
+//i = Inflation rate
+{
+	return PVGrowingAnnuityDue1stPmt(S, r, i);
+}
