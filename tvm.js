@@ -218,3 +218,22 @@ function RIGrowingAnnuity(S, y, r, i)
 {
 	return PVGrowingAnnuityDue1stPmt(S, y, r, i);
 }
+
+function RISpecifiedDB(S, y, r, i, DB)
+//Returns the first year income from retirement savings using the Specified Death Benefit Method, or 0 if no funds available for income
+//S = Savings available for retirement income at retirement
+//y = Years in Retirement
+//r = Investment return
+//i = Inflation rate (annuity payment growth rate)
+//DB = Death Benefit amount at Death in Future Value
+{
+	var SavingsForIncome = S - PVFutureSum(DB, y, r);
+	if (SavingsForIncome <= 0)
+	{
+		return 0;
+	}
+	else
+	{
+		return PVGrowingAnnuityDue1stPmt(SavingsForIncome, y, r, i);
+	}
+}
