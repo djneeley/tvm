@@ -204,7 +204,17 @@ function RIGrowingPerpetuity(S, r, i)
 //Returns the first year income from retirement savings using the Growing Perpetuity Method
 //S = Savings available for retirement income at retirement
 //r = Investment return
-//i = Inflation rate
+//i = Inflation rate (annuity payment growth rate)
 {
-	return PVGrowingAnnuityDue1stPmt(S, r, i);
+	return PVGrowingPerpetuityDue1stPmt(S, r, i);
+}
+
+function RIGrowingAnnuity(S, y, r, i)
+//Returns the first year income from retirement savings using the Growing Annuity Method
+//S = Savings available for retirement income at retirement
+//y = Years in Retirement
+//r = Investment return
+//i = Inflation rate (annuity payment growth rate)
+{
+	return PVGrowingAnnuityDue1stPmt(S, y, r, i);
 }
