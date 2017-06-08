@@ -122,6 +122,15 @@ function PVGrowingPerpetuityDue(A, i, g)
 	return A / (i - g) * (1 + i);
 }
 
+function PVGrowingPerpetuityDue1stPmt(PV, i, g)
+//returns the 1st Annuity Payment of a Growing Perpetuity Due with given Present Value
+//PV = Present Value
+//i = Interest Rate
+//g = Growth Rate
+{
+	return PV * (i - g) / (1 + i);
+}
+
 function FVAnnuity(A, n, i)
 //returns the Future Value of an Annuity
 //A = Annuity Payment
