@@ -38,7 +38,30 @@ function PVAnnuityDue(A, n, i)
 	return A / i * (1-1/Math.pow(1+i,n)) * (1+i);
 }
 
-function PresentValueOfGrowingAnnuityDue(A, n, i, g)
+function PVGrowingAnnuity(A, n, i, g)
+//Returns the Present Value of a Growing Annuity
+//A = Annuity
+//n = Number of Periods
+//i - Interest Rate
+//g = Growth Rate
+//http://en.wikipedia.org/wiki/Time_value_of_money#Present_value_of_a_growing_annuity
+{
+	if (i != g)
+	{
+		return A / (i-g) * (1-Math.pow((1+g)/(1+i),n));
+	}
+	else
+	{
+		return A * n / (1+i);
+	}
+}
+
+function PVGrowingAnnuityDue(A, n, i, g)
+//Returns the Present Value of a Growing Annuity Due
+//A = Annuity
+//n = Number of Periods
+//i - Interest Rate
+//g = Growth Rate
 //http://en.wikipedia.org/wiki/Time_value_of_money#Present_value_of_a_growing_annuity
 {
 	if (i != g)
