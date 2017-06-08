@@ -18,6 +18,16 @@ function PVFutureSum(FV, n, i)
 	return FV / Math.pow(1+i, n);
 }
 
+function PVAnnuity(A, n, i)
+//Returns the Present Value of an Annuity
+//A = Annuity
+//n = Number of Periods
+//i = Interest Rate
+//https://en.wikipedia.org/wiki/Time_value_of_money#Present_value_of_an_annuity_for_n_payment_periods
+{
+	return A / i * (1-1/Math.pow(1+i,n));
+}
+
 function PresentValueOfAnnuityDue(A, n, i)
 //http://en.wikipedia.org/wiki/Time_value_of_money#Present_value_of_an_annuity_for_n_payments
 {
