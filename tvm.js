@@ -92,6 +92,15 @@ function PVGrowingAnnuityDue1stPmt(PV, n, i, g)
 	}
 }
 
+function PVPerpetuity(A, i)
+//returns the Present Value of a Perpetuity
+//A = Annuity Payment
+//i = Number of Periods
+//https://en.wikipedia.org/wiki/Time_value_of_money#Present_value_of_a_perpetuity
+{
+	return A / i;
+}
+
 function FutureValueOfGrowingAnnuity(A, n, i, g)
 //http://en.wikipedia.org/wiki/Time_value_of_money#Future_value_of_a_growing_annuity
 {
