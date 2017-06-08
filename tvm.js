@@ -246,8 +246,8 @@ function RIFixedDollar(S, y, r, i, w)
 //i = Inflation rate (annuity payment growth rate)
 //w = Initial withdrawal rate as percentage of S
 {
-	var PV = PVGrowingAnnuityDue(S * w, y, r, i)
-	if (PV > S)
+	var PVIncome = PVGrowingAnnuityDue(S * w, y, r, i);
+	if (PVIncome > S)
 	{
 		return 0;
 	}
@@ -255,4 +255,12 @@ function RIFixedDollar(S, y, r, i, w)
 	{
 		return S * w;
 	}
+}
+
+function RIFixedPercentage(S, w)
+//Returns the first year income from retirement savings using the Fixed Percentage Withdrawal Method
+//S = Savings available for retirement income at retirement
+//w = Withdrawal rate
+{
+	return S * w;
 }
