@@ -128,3 +128,21 @@ function FVGrowingAnnuity(A, n, i, g)
 		return A * n * Math.pow(1+i , n-1);
 	}
 }
+
+function FVGrowingAnnuityDue(A, n, i, g)
+//Returns the Future Value of a Growing Annuity Due
+//A = Annuity Payment
+//n = Number of Periods
+//i = Interest Rate
+//g = Growth Rate
+//http://en.wikipedia.org/wiki/Time_value_of_money#Future_value_of_a_growing_annuity
+{
+	if (i != g)
+	{
+		return A * (Math.pow(1+i, n) - Math.pow(1+g, n))/(i-g) * (1 + i);
+	}
+	else
+	{
+		return A * n * Math.pow(1+i , n);
+	}
+}
