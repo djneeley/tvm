@@ -237,3 +237,22 @@ function RISpecifiedDB(S, y, r, i, DB)
 		return PVGrowingAnnuityDue1stPmt(SavingsForIncome, y, r, i);
 	}
 }
+
+function RIFixedDollar(S, y, r, i, w)
+//Returns the first year income from retirement savings using the Fixed Dollar Withdrawal Method, or 0 if insufficient funds
+//S = Savings available for retirement income at retirement
+//y = Years in Retirement
+//r = Investment return
+//i = Inflation rate (annuity payment growth rate)
+//w = Initial withdrawal rate as percentage of S
+{
+	var PV = PVGrowingAnnuityDue(S * w, y, r, i)
+	if (PV > S)
+	{
+		return 0;
+	}
+	else
+	{
+		return S * w;
+	}
+}
