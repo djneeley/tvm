@@ -121,6 +121,16 @@ function FVAnnuity(A, n, i)
 	return A * (Math.pow(1+i, n) - 1) / i;
 }
 
+function FVAnnuityDue(A, n, i)
+//returns the Future Value of an Annuity Due
+//A = Annuity Payment
+//n = Number of Periods
+//i = Interest Rate
+//https://en.wikipedia.org/wiki/Time_value_of_money#Future_value_of_an_annuity
+{
+	return A * (Math.pow(1+i, n) - 1) / i * (1 + i);
+}
+
 function FVGrowingAnnuity(A, n, i, g)
 //Returns the Future Value of a Growing Annuity
 //A = Annuity Payment
