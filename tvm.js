@@ -111,7 +111,12 @@ function PVGrowingPerpetuity(A, i, g)
 	return A / (i - g);
 }
 
-function FutureValueOfGrowingAnnuity(A, n, i, g)
+function FVGrowingAnnuity(A, n, i, g)
+//Returns the Future Value of a Growing Annuity
+//A = Annuity Payment
+//n = Number of Periods
+//i = Interest Rate
+//g = Growth Rate
 //http://en.wikipedia.org/wiki/Time_value_of_money#Future_value_of_a_growing_annuity
 {
 	if (i != g)
