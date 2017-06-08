@@ -74,10 +74,13 @@ function PVGrowingAnnuityDue(A, n, i, g)
 	}
 }
 	
-function AnnuityFromPVGrowingAnnuityDue(PV, n, i, g)
+function PVGrowingAnnuityDue1stPmt(PV, n, i, g)
+//returns the first annuity payment when the present value of a growing annuity due is known
+//A = Annuity
+//n = Number of Periods
+//i - Interest Rate
+//g = Growth Rate
 //http://en.wikipedia.org/wiki/Time_value_of_money#Present_value_of_a_growing_annuity
-//returns the initial annuity payment when the present value of a growing annuity due is known
-//('A' from the formula on the wikipedia page)
 {
 	if (i != g)
 	{
