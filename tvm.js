@@ -170,3 +170,14 @@ function FVGrowingAnnuityDue(A, n, i, g)
 }
 
 // APPLIED TVM FORMULAS
+
+// Retirement Income Functions
+
+function RICapitalPreservation(S, r)
+//Returns the first year income from retirement savings using the Capital Preservation Method
+//S = Savings available for retirement income at retirement
+//r = Investment return
+{
+	//return S * r / (1 + r); //Alternate calculation that provides same result with no dependencies
+	return S - PVFutureSum(S, 1, r);
+}
