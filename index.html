@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <script src="tvm.js"></script>
+  </head>
+  <body>
+
+    <h1>Retirement Savings Evaluator</h1>
+
+    <h2>Assumptions</h2>
+
+    Current Savings: <span id="currentSavingsLabel">10000</span><br>
+    <input type="range" id="currentSavings" min="0" max="1000000" value="10000" oninput="updateResult()"><br><br>
+    
+    Monthly Savings: <span id="monthlySavingsLabel">1000</span><br>
+    <input type="range" id="monthlySavings" min="0" max="10000" value="1000" oninput="updateResult()"><br><br>
+
+    Savings Increase: <span id="savingsIncreaseLabel">3</span><br>
+    <input type="range" id="savingsIncrease" min="0" max="10" step="0.1" value="3" oninput="updateResult()"><br><br>
+
+    Investment Return: <span id="investmentReturnLabel">8</span><br>
+    <input type="range" id="investmentReturn" min="0" max="12" step="0.1" value="8" oninput="updateResult()"><br><br>
+
+    Inflation Rate: <span id="inflationRateLabel">3</span><br>
+    <input type="range" id="inflationRate" min="0" max="5" step="0.1" value="3" oninput="updateResult()"><br><br>
+
+    Years to Retirement: <span id="yearsToRetirementLabel">30</span><br>
+    <input type="range" id="yearsToRetirement" min="0" max="50" step="1" value="30" oninput="updateResult()"><br><br>
+
+    Years in Retirement: <span id="yearsInRetirementLabel">40</span><br>
+    <input type="range" id="yearsInRetirement" min="0" max="50" step="1" value="40" oninput="updateResult()"><br><br>
+
+    <h2>Options</h2>
+      <div class="onoffswitch">
+        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked onchange="updateResult()">
+        <label class="onoffswitch-label" for="myonoffswitch">
+          <span class="onoffswitch-inner"></span>
+          <span class="onoffswitch-switch"></span>
+        </label>
+      </div>
+
+    <h2>Results</h2>
+    Retirement Income: <span id="retirementIncome">0</span><br>
+
+    <script language="javascript" type="text/javascript">
+      updateResult();
+
+      function updateResult()
+      {
+        var currentSavings = document.querySelector('#currentSavings');
+        document.querySelector('#currentSavingsLabel').textContent = currentSavings.value;
+        var monthlySavings = document.querySelector('#monthlySavings');
+        document.querySelector('#monthlySavingsLabel').textContent = monthlySavings.value;
+        var savingsIncrease = document.querySelector('#savingsIncrease');
+        document.querySelector('#savingsIncreaseLabel').textContent = savingsIncrease.value;
+        var investmentReturn = document.querySelector('#investmentReturn');
+        document.querySelector('#investmentReturnLabel').textContent = investmentReturn.value;
+        var inflationRate = document.querySelector('#inflationRate');
+        document.querySelector('#inflationRateLabel').textContent = inflationRate.value;
+        var yearsToRetirement = document.querySelector('#yearsToRetirement');
+        document.querySelector('#yearsToRetirementLabel').textContent = yearsToRetirement.value;
+        var yearsInRetirement = document.querySelector('#yearsInRetirement');
+        document.querySelector('#yearsInRetirementLabel').textContent = yearsInRetirement.value;
+        var monthlyReturn = annualToMonthly(investmentReturn.value/100);
+        var monthlySavingsIncrease = annualToMonthly(savingsIncrease.value/100);
+        var savingsAtRetirement = futureValueOfPresentSum(currentSavings.value, yearsToRetirement.value*12,monthlyReturn) + futureValueOfGrowingAnnuity(monthlySavings.value, yearsToRetirement.value*12, monthlyReturn, monthlySavingsIncrease);
+        var initialPayment = 0;
+        if (document.getElementById('myonoffswitch').checked)
+        {
+            initialPayment = annuityFromPVGrowingAnnuityDue(savingsAtRetirement,yearsInRetirement.value,investmentReturn.value/100,inflationRate.value/100);
+        }
+        else
+        {
+        	initialPayment = initialPaymentGrowingPerpetuity(savingsAtRetirement, investmentReturn.value/100, inflationRate.value/100);
+        }
+
+        var retirementIncome = presentValueOfFutureSum(initialPayment, yearsToRetirement.value, inflationRate.value/100);
+        document.querySelector('#retirementIncome').textContent = retirementIncome;
+        return True;
+      }
+    </script>
+
+  </body>
+</html>
