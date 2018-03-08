@@ -24,12 +24,76 @@
         <p>Use this calculator to estimate your income in retirement based on current accumulated savings, future monthly savings, and other assumptions.</p>
     </div>
 
-    <div class="sticky-top bg-white pb-1">
-        <h3>Retirement Income</h3>
-        <p class="lead">$<span id="retirementIncome">0</span> per year</p>
+    <div class="sticky-top bg-white pb-2">
+        <div class="row">
+            <div class="col-sm">
+                <h4>Retirement Income</h4>
+                <div class="row">
+                    <div class="col-8">
+                        <p class="lead">$<span id="retirementIncome">0</span></p>
+                    </div>
+                    <div class="col-4 text-center">
+                        <label class="switch">
+                          <input type="checkbox">
+                          <span class="knob round"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <h4>Savings at Retirement</h4>
+                <div class="row">
+                    <div class="col-8">
+                        <p class="lead">$<span id="retirementIncome">0</span></p>
+                    </div>
+                    <div class="col-4 text-center">
+                        <label class="switch">
+                          <input type="checkbox">
+                          <span class="knob round"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <h4>Death Benefit</h4>
+                <div class="row">
+                    <div class="col-8">
+                        <p class="lead">$<span id="retirementIncome">0</span></p>
+                    </div>
+                    <div class="col-4 text-center">
+                        <label class="switch">
+                          <input type="checkbox">
+                          <span class="knob round"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
-
+    <div class="mb-4">
+    <h6>Withdrawal Method</h6>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label class="btn btn-secondary active">
+        <input type="radio" name="methods" id="option1" autocomplete="off" checked> Annuity
+      </label>
+      <label class="btn btn-secondary">
+        <input type="radio" name="methods" id="option2" autocomplete="off"> Fixed $
+      </label>
+      <label class="btn btn-secondary">
+        <input type="radio" name="methods" id="option3" autocomplete="off"> Fixed %
+      </label>
+      <label class="btn btn-secondary">
+        <input type="radio" name="methods" id="option4" autocomplete="off"> Preserve Capital
+      </label>
+      <label class="btn btn-secondary">
+        <input type="radio" name="methods" id="option5" autocomplete="off"> Perpetuity
+      </label>
+      <label class="btn btn-secondary">
+        <input type="radio" name="methods" id="option6" autocomplete="off"> No Income
+      </label>
+    </div>
+    </div>
     <div class="row">
         <div class="col-md mb-4">
             <h6>Current Savings</h6>
