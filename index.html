@@ -24,21 +24,21 @@
 
     <div class="row">
         <div class="col-md mb-4">
-            <h5>Current Savings</h5>
+            <h6>Current Savings</h6>
             <p class="lead">$<span id="currentSavingsLabel">10,000</span></p>
             <div class="slidecontainer">
                 <input type="range" id="currentSavings" min="0" max="1000000" step="1000" value="10000" oninput="updateResult()" class="slider">
             </div>
         </div>
         <div class="col-md mb-4">
-            <h5>Monthly Savings</h5>
+            <h6>Monthly Savings</h6>
             <p class="lead">$<span id="monthlySavingsLabel">1000</span> per month</p>
             <div class="slidecontainer">
                 <input type="range" id="monthlySavings" min="0" max="10000" step="50"  value="1000" oninput="updateResult()" class="slider">
             </div>
         </div>
         <div class="col-md mb-4">
-            <h5>Savings Increase</h5>
+            <h6>Savings Increase</h6>
             <p class="lead"><span id="savingsIncreaseLabel">3</span>% per year</p>
             <div class="slidecontainer">
                 <input type="range" id="savingsIncrease" min="0" max="10" step="0.1" value="3" oninput="updateResult()" class="slider">
@@ -47,14 +47,14 @@
     </div>
     <div class="row">
         <div class="col-md-4 mb-4">
-            <h5>Investment Return</h5>
+            <h6>Investment Return</h6>
             <p class="lead"><span id="investmentReturnLabel">8</span>% per year</p>
             <div class="slidecontainer">
                 <input type="range" id="investmentReturn" min="0" max="12" step="0.1" value="8" oninput="updateResult()" class="slider">
             </div>
         </div>
         <div class="col-md-4 mb-4">
-            <h5>Inflation Rate</h5>
+            <h6>Inflation Rate</h6>
             <p class="lead"><span id="inflationRateLabel">3</span>% per year</p>
             <div class="slidecontainer">
                 <input type="range" id="inflationRate" min="0" max="5" step="0.1" value="3" oninput="updateResult()" class="slider">
@@ -63,14 +63,14 @@
     </div>
     <div class="row">
         <div class="col-md-4 mb-4">
-            <h5>Years to Retirement</h5>
+            <h6>Years to Retirement</h6>
             <p class="lead"><span id="yearsToRetirementLabel">30</span> years</p>
             <div class="slidecontainer">
                 <input type="range" id="yearsToRetirement" min="0" max="50" step="1" value="30" oninput="updateResult()" class="slider">
             </div>
         </div>
         <div class="col-md-4 mb-4">
-            <h5>Years in Retirement</h5>
+            <h6>Years in Retirement</h6>
             <p class="lead"><span id="yearsInRetirementLabel">40</span> years</p>
             <div class="slidecontainer">
                 <input type="range" id="yearsInRetirement" min="1" max="50" step="1" value="40" oninput="updateResult()" class="slider">
