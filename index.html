@@ -118,7 +118,7 @@
         	initialPayment = RIGrowingPerpetuity(savingsAtRetirement, investmentReturn.value/100, inflationRate.value/100);
         }
 
-        var retirementIncome = Math.round(PVFutureSum(initialPayment, yearsToRetirement.value, inflationRate.value/100)/1000)*1000;
+        var retirementIncome = (Math.round(PVFutureSum(initialPayment, yearsToRetirement.value, inflationRate.value/100)/1000)*1000).formatMoney(0);
         document.querySelector('#retirementIncome').textContent = retirementIncome;
         return True;
       }
