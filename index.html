@@ -20,7 +20,7 @@
 
     <div class="sticky-top bg-white">
         <h2>Results</h2>
-        Retirement Income: <span id="retirementIncome">0</span><br>
+        Retirement Income: $<span id="retirementIncome">0</span> per year<br>
     </div>
     
     
@@ -28,19 +28,19 @@
 
     <div class="row text-center">
         <div class="col-md">
-            Current Savings: <span id="currentSavingsLabel">10000</span><br>
+            Current Savings: $<span id="currentSavingsLabel">10,000</span><br>
             <div class="slidecontainer">
                 <input type="range" id="currentSavings" min="0" max="1000000" step="1000" value="10000" oninput="updateResult()" class="slider"><br><br>
             </div>
         </div>
         <div class="col-md">
-            Monthly Savings: <span id="monthlySavingsLabel">1000</span><br>
+            Monthly Savings: $<span id="monthlySavingsLabel">1000</span> per month<br>
             <div class="slidecontainer">
                 <input type="range" id="monthlySavings" min="0" max="10000" step="50"  value="1000" oninput="updateResult()" class="slider"><br><br>
             </div>
         </div>
         <div class="col-md">
-            Savings Increase: <span id="savingsIncreaseLabel">3</span><br>
+            Savings Increase: <span id="savingsIncreaseLabel">3</span>% per year<br>
             <div class="slidecontainer">
                 <input type="range" id="savingsIncrease" min="0" max="10" step="0.1" value="3" oninput="updateResult()" class="slider"><br><br>
             </div>
@@ -48,13 +48,13 @@
     </div>
     <div class="row text-center">
         <div class="col-md">
-            Investment Return: <span id="investmentReturnLabel">8</span><br>
+            Investment Return: <span id="investmentReturnLabel">8</span>% per year<br>
             <div class="slidecontainer">
                 <input type="range" id="investmentReturn" min="0" max="12" step="0.1" value="8" oninput="updateResult()" class="slider"><br><br>
             </div>
         </div>
         <div class="col-md">
-            Inflation Rate: <span id="inflationRateLabel">3</span><br>
+            Inflation Rate: <span id="inflationRateLabel">3</span>% per year<br>
             <div class="slidecontainer">
                 <input type="range" id="inflationRate" min="0" max="5" step="0.1" value="3" oninput="updateResult()" class="slider"><br><br>
             </div>
@@ -62,13 +62,13 @@
     </div>
     <div class="row text-center">
         <div class="col-md">
-            Years to Retirement: <span id="yearsToRetirementLabel">30</span><br>
+            Years to Retirement: <span id="yearsToRetirementLabel">30</span> years<br>
             <div class="slidecontainer">
                 <input type="range" id="yearsToRetirement" min="0" max="50" step="1" value="30" oninput="updateResult()" class="slider"><br><br>
             </div>
         </div>
         <div class="col-md">
-            Years in Retirement: <span id="yearsInRetirementLabel">40</span><br>
+            Years in Retirement: <span id="yearsInRetirementLabel">40</span> years<br>
             <div class="slidecontainer">
                 <input type="range" id="yearsInRetirement" min="1" max="50" step="1" value="40" oninput="updateResult()" class="slider"><br><br>
             </div>
@@ -92,15 +92,15 @@
       function updateResult()
       {
         var currentSavings = document.querySelector('#currentSavings');
-        document.querySelector('#currentSavingsLabel').textContent = currentSavings.value;
+        document.querySelector('#currentSavingsLabel').textContent = (Number(currentSavings.value)).formatMoney(0);
         var monthlySavings = document.querySelector('#monthlySavings');
-        document.querySelector('#monthlySavingsLabel').textContent = monthlySavings.value;
+        document.querySelector('#monthlySavingsLabel').textContent = (Number(monthlySavings.value)).formatMoney(0);
         var savingsIncrease = document.querySelector('#savingsIncrease');
-        document.querySelector('#savingsIncreaseLabel').textContent = savingsIncrease.value;
+        document.querySelector('#savingsIncreaseLabel').textContent = (Number(savingsIncrease.value)).formatMoney(1);
         var investmentReturn = document.querySelector('#investmentReturn');
-        document.querySelector('#investmentReturnLabel').textContent = investmentReturn.value;
+        document.querySelector('#investmentReturnLabel').textContent = (Number(investmentReturn.value)).formatMoney(1);
         var inflationRate = document.querySelector('#inflationRate');
-        document.querySelector('#inflationRateLabel').textContent = inflationRate.value;
+        document.querySelector('#inflationRateLabel').textContent = (Number(inflationRate.value)).formatMoney(1);
         var yearsToRetirement = document.querySelector('#yearsToRetirement');
         document.querySelector('#yearsToRetirementLabel').textContent = yearsToRetirement.value;
         var yearsInRetirement = document.querySelector('#yearsInRetirement');
