@@ -15,6 +15,14 @@
   </head>
   <body>
     <div class="container">
+        
+    <div>
+        <h1 class="display-4">
+            Retirement Income Calculator
+            <small class="text-muted">Advanced</small>
+        </h1>
+        <p>Use this calculator to estimate your income in retirement based on current accumulated savings, future monthly savings, and other assumptions.</p>
+    </div>
 
     <div class="sticky-top bg-white pb-1">
         <h3>Retirement Income</h3>
@@ -27,7 +35,7 @@
             <h6>Current Savings</h6>
             <p class="lead">$<span id="currentSavingsLabel">10,000</span></p>
             <div class="slidecontainer">
-                <input type="range" id="currentSavings" min="0" max="1000000" step="1000" value="10000" oninput="updateResult()" class="slider">
+                <input type="range" id="currentSavings" min="0" max="2000000" step="1000" value="10000" oninput="updateResult()" class="slider">
             </div>
         </div>
         <div class="col-md mb-4">
@@ -47,10 +55,17 @@
     </div>
     <div class="row">
         <div class="col-md-4 mb-4">
-            <h6>Investment Return</h6>
-            <p class="lead"><span id="investmentReturnLabel">8</span>% per year</p>
+            <h6>Return Before Retirement</h6>
+            <p class="lead"><span id="preRetirementReturnLabel">8</span>% per year</p>
             <div class="slidecontainer">
-                <input type="range" id="investmentReturn" min="0" max="12" step="0.1" value="8" oninput="updateResult()" class="slider">
+                <input type="range" id="preRetirementReturn" min="0" max="12" step="0.1" value="8" oninput="updateResult()" class="slider">
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <h6>Return During Retirement</h6>
+            <p class="lead"><span id="postRetirementReturnLabel">8</span>% per year</p>
+            <div class="slidecontainer">
+                <input type="range" id="postRetirementReturn" min="0" max="12" step="0.1" value="8" oninput="updateResult()" class="slider">
             </div>
         </div>
         <div class="col-md-4 mb-4">
@@ -74,6 +89,39 @@
             <p class="lead"><span id="yearsInRetirementLabel">40</span> years</p>
             <div class="slidecontainer">
                 <input type="range" id="yearsInRetirement" min="1" max="50" step="1" value="40" oninput="updateResult()" class="slider">
+            </div>
+        </div>
+        <div class="col-md mb-4">
+            <h6>Value at Death</h6>
+            <div class="row">
+                <div class="col-8">
+                    <p class="lead">$<span id="valueAtDeathLabel">0</span></p>
+                </div>
+                <div class="col-4 text-right">
+                    <label class="switch">
+                      <input type="checkbox">
+                      <span class="knob round"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" id="valueAtDeath" min="0" max="2000000" step="1000" value="0" oninput="updateResult()" class="slider">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <h6>Fixed Dollar Rate</h6>
+            <p class="lead"><span id="fixedDollarRateLabel">4</span>% per year</p>
+            <div class="slidecontainer">
+                <input type="range" id="fixedDollarRate" min="0" max="12" step="0.1" value="4" oninput="updateResult()" class="slider">
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <h6>Fixed Percentage Rate</h6>
+            <p class="lead"><span id="fixedPercentageRateLabel">6</span>% per year</p>
+            <div class="slidecontainer">
+                <input type="range" id="fixedPercentageRate" min="0" max="12" step="0.1" value="6" oninput="updateResult()" class="slider">
             </div>
         </div>
     </div>
@@ -100,25 +148,33 @@
         document.querySelector('#monthlySavingsLabel').textContent = (Number(monthlySavings.value)).formatMoney(0);
         var savingsIncrease = document.querySelector('#savingsIncrease');
         document.querySelector('#savingsIncreaseLabel').textContent = (Number(savingsIncrease.value)).formatMoney(1);
-        var investmentReturn = document.querySelector('#investmentReturn');
-        document.querySelector('#investmentReturnLabel').textContent = (Number(investmentReturn.value)).formatMoney(1);
+        var preRetirementReturn = document.querySelector('#preRetirementReturn');
+        document.querySelector('#preRetirementReturnLabel').textContent = (Number(preRetirementReturn.value)).formatMoney(1);
+        var postRetirementReturn = document.querySelector('#postRetirementReturn');
+        document.querySelector('#postRetirementReturnLabel').textContent = (Number(postRetirementReturn.value)).formatMoney(1);
         var inflationRate = document.querySelector('#inflationRate');
         document.querySelector('#inflationRateLabel').textContent = (Number(inflationRate.value)).formatMoney(1);
         var yearsToRetirement = document.querySelector('#yearsToRetirement');
         document.querySelector('#yearsToRetirementLabel').textContent = yearsToRetirement.value;
         var yearsInRetirement = document.querySelector('#yearsInRetirement');
         document.querySelector('#yearsInRetirementLabel').textContent = yearsInRetirement.value;
-        var monthlyReturn = annualToMonthly(investmentReturn.value/100);
+        var valueAtDeath = document.querySelector('#valueAtDeath');
+        document.querySelector('#valueAtDeathLabel').textContent = (Number(valueAtDeath.value)).formatMoney(0);
+        var fixedDollarRate = document.querySelector('#fixedDollarRate');
+        document.querySelector('#fixedDollarRateLabel').textContent = (Number(fixedDollarRate.value)).formatMoney(1);
+        var fixedPercentageRate = document.querySelector('#fixedPercentageRate');
+        document.querySelector('#fixedPercentageRateLabel').textContent = (Number(fixedPercentageRate.value)).formatMoney(1);
+        var monthlyReturn = annualToMonthly(preRetirementReturn.value/100);
         var monthlySavingsIncrease = annualToMonthly(savingsIncrease.value/100);
-        var savingsAtRetirement = PVFutureSum(currentSavings.value, yearsToRetirement.value*12,monthlyReturn) + FVGrowingAnnuity(monthlySavings.value, yearsToRetirement.value*12, monthlyReturn, monthlySavingsIncrease);
+        var savingsAtRetirement = FVPresentSum(currentSavings.value, yearsToRetirement.value*12,monthlyReturn) + FVGrowingAnnuity(monthlySavings.value, yearsToRetirement.value*12, monthlyReturn, monthlySavingsIncrease);
         var initialPayment = 0;
         if (document.getElementById('myonoffswitch').checked)
         {
-            initialPayment = RIGrowingAnnuity(savingsAtRetirement,yearsInRetirement.value,investmentReturn.value/100,inflationRate.value/100);
+            initialPayment = RIGrowingAnnuity(savingsAtRetirement,yearsInRetirement.value,postRetirementReturn.value/100,inflationRate.value/100);
         }
         else
         {
-        	initialPayment = RIGrowingPerpetuity(savingsAtRetirement, investmentReturn.value/100, inflationRate.value/100);
+        	initialPayment = RIGrowingPerpetuity(savingsAtRetirement, postRetirementReturn.value/100, inflationRate.value/100);
         }
 
         var retirementIncome = (Math.round(PVFutureSum(initialPayment, yearsToRetirement.value, inflationRate.value/100)/1000)*1000).formatMoney(0);
