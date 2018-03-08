@@ -73,18 +73,18 @@
         document.querySelector('#yearsInRetirementLabel').textContent = yearsInRetirement.value;
         var monthlyReturn = annualToMonthly(investmentReturn.value/100);
         var monthlySavingsIncrease = annualToMonthly(savingsIncrease.value/100);
-        var savingsAtRetirement = futureValueOfPresentSum(currentSavings.value, yearsToRetirement.value*12,monthlyReturn) + futureValueOfGrowingAnnuity(monthlySavings.value, yearsToRetirement.value*12, monthlyReturn, monthlySavingsIncrease);
+        var savingsAtRetirement = PVFutureSum(currentSavings.value, yearsToRetirement.value*12,monthlyReturn) + FVGrowingAnnuity(monthlySavings.value, yearsToRetirement.value*12, monthlyReturn, monthlySavingsIncrease);
         var initialPayment = 0;
         if (document.getElementById('myonoffswitch').checked)
         {
-            initialPayment = annuityFromPVGrowingAnnuityDue(savingsAtRetirement,yearsInRetirement.value,investmentReturn.value/100,inflationRate.value/100);
+            initialPayment = RIGrowingAnnuity(savingsAtRetirement,yearsInRetirement.value,investmentReturn.value/100,inflationRate.value/100);
         }
         else
         {
-        	initialPayment = initialPaymentGrowingPerpetuity(savingsAtRetirement, investmentReturn.value/100, inflationRate.value/100);
+        	initialPayment = RIGrowingPerpetuity(savingsAtRetirement, investmentReturn.value/100, inflationRate.value/100);
         }
 
-        var retirementIncome = presentValueOfFutureSum(initialPayment, yearsToRetirement.value, inflationRate.value/100);
+        var retirementIncome = PVFutureSum(initialPayment, yearsToRetirement.value, inflationRate.value/100);
         document.querySelector('#retirementIncome').textContent = retirementIncome;
         return True;
       }

@@ -1,12 +1,11 @@
 // FUNDAMENTAL TVM FORMULAS
 
-function FVPresentSum(PV, n, i)
+function FVPresentSum(PV, n, i) {
 //Returns the Future Value of a Present Sum
 //PV = Present Value
 //n = Number of Periods
 //i = Interest Rate
 //https://en.wikipedia.org/wiki/Time_value_of_money#Future_value_of_a_present_sum
-{
 	return PV * Math.pow(1+i, n);
 }
 
@@ -263,4 +262,12 @@ function RIFixedPercentage(S, w)
 //w = Withdrawal rate
 {
 	return S * w;
+}
+
+// OTHER FORUMULAS
+
+function annualToMonthly(Rate)
+//Converts an annual rate to a monthly rate
+{
+  return Math.pow((1+Rate),(1/12))-1;
 }
