@@ -26,41 +26,13 @@
 
     <div class="sticky-top bg-white pb-2">
         <div class="row">
-            <div class="col-sm">
-                <h4>Retirement Income</h4>
+        <div class="col-md-4">
+        <h4>Retirement Income</h4>
                 <div class="row">
                     <div class="col-8">
                         <p class="lead">$<span id="retirementIncome">0</span></p>
                     </div>
-                    <div class="col-4 text-center">
-                        <label class="switch">
-                          <input type="checkbox">
-                          <span class="knob round"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm">
-                <h4>Savings at Retirement</h4>
-                <div class="row">
-                    <div class="col-8">
-                        <p class="lead">$<span id="retirementIncome">0</span></p>
-                    </div>
-                    <div class="col-4 text-center">
-                        <label class="switch">
-                          <input type="checkbox">
-                          <span class="knob round"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm">
-                <h4>Death Benefit</h4>
-                <div class="row">
-                    <div class="col-8">
-                        <p class="lead">$<span id="retirementIncome">0</span></p>
-                    </div>
-                    <div class="col-4 text-center">
+                    <div class="col-4 text-right">
                         <label class="switch">
                           <input type="checkbox">
                           <span class="knob round"></span>
@@ -69,30 +41,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class="mb-4">
-    <h6>Withdrawal Method</h6>
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-      <label class="btn btn-secondary active">
-        <input type="radio" name="methods" id="option1" autocomplete="off" checked> Annuity
-      </label>
-      <label class="btn btn-secondary">
-        <input type="radio" name="methods" id="option2" autocomplete="off"> Fixed $
-      </label>
-      <label class="btn btn-secondary">
-        <input type="radio" name="methods" id="option3" autocomplete="off"> Fixed %
-      </label>
-      <label class="btn btn-secondary">
-        <input type="radio" name="methods" id="option4" autocomplete="off"> Preserve Capital
-      </label>
-      <label class="btn btn-secondary">
-        <input type="radio" name="methods" id="option5" autocomplete="off"> Perpetuity
-      </label>
-      <label class="btn btn-secondary">
-        <input type="radio" name="methods" id="option6" autocomplete="off"> No Income
-      </label>
-    </div>
     </div>
     <div class="row">
         <div class="col-md mb-4">
@@ -186,6 +134,52 @@
             <p class="lead"><span id="fixedPercentageRateLabel">6</span>% per year</p>
             <div class="slidecontainer">
                 <input type="range" id="fixedPercentageRate" min="0" max="12" step="0.1" value="6" oninput="updateResult()" class="slider">
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <h6>Withdrawal Method</h6>
+            <select class="form-control">
+                <option>Growing Annuity</option>
+                <option>Fixed Dollar</option>
+                <option>Fixed Percentage</option>
+                <option>Specified Death Benefit</option>
+                <option>Capital Preservation</option>
+                <option>Growing Perpetuity</option>
+                <option>No Income</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md">
+            <h4>Total Saved</h4>
+            <p class="lead">$<span id="retirementIncome">0</span></p>
+        </div>
+        <div class="col-md">
+            <h4>Savings at Retirement</h4>
+            <div class="row">
+                <div class="col-8">
+                    <p class="lead">$<span id="retirementIncome">0</span></p>
+                </div>
+                <div class="col-4 text-right">
+                    <label class="switch">
+                      <input type="checkbox">
+                      <span class="knob round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <h4>Death Benefit</h4>
+            <div class="row">
+                <div class="col-8">
+                    <p class="lead">$<span id="retirementIncome">0</span></p>
+                </div>
+                <div class="col-4 text-right">
+                    <label class="switch">
+                      <input type="checkbox">
+                      <span class="knob round"></span>
+                    </label>
+                </div>
             </div>
         </div>
     </div>
