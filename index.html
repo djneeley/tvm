@@ -223,6 +223,10 @@
         {
             initialPayment = RIGrowingAnnuity(savingsAtRetirement,yearsInRetirement.value,postRetirementReturn.value/100,inflationRate.value/100);
         }
+        else if (withdrawalMethod=="Fixed Dollar")
+        {
+        	initialPayment = RIFixedDollar(savingsAtRetirement, yearsInRetirement.value, postRetirementReturn.value/100, inflationRate.value/100, fixedDollarRate.value/100);
+        }
         else if (withdrawalMethod=="Growing Perpetuity")
         {
         	initialPayment = RIGrowingPerpetuity(savingsAtRetirement, postRetirementReturn.value/100, inflationRate.value/100);
