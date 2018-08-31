@@ -192,6 +192,7 @@
 
       function updateResult()
       {
+        disableInputs();
         var currentSavings = document.querySelector('#currentSavings');
         document.querySelector('#currentSavingsLabel').textContent = (Number(currentSavings.value)).formatMoney(0);
         var monthlySavings = document.querySelector('#monthlySavings');
@@ -257,6 +258,43 @@
         document.querySelector('#retirementIncome').textContent = retirementIncome;
         document.querySelector('#savingsAtRetirementLabel').textContent = (savingsAtRetirement).formatMoney(0);
         return;
+      }
+        
+      function disableInputs()
+      {
+        var withdrawalMethod = document.getElementById('withdrawalMethod').value;
+        if (withdrawalMethod=="Growing Annuity")
+        {
+            document.getElementById("valueAtDeath").disabled = true;
+        }
+        else if (withdrawalMethod=="Fixed Dollar")
+        {
+        	document.getElementById("valueAtDeath").disabled = true;
+        }
+        else if (withdrawalMethod=="Fixed Percentage")
+        {
+        	document.getElementById("valueAtDeath").disabled = true;
+        }
+        else if (withdrawalMethod=="Specified Death Benefit")
+        {
+        	document.getElementById("valueAtDeath").disabled = false;
+        }
+        else if (withdrawalMethod=="Capital Preservation")
+        {
+        	document.getElementById("valueAtDeath").disabled = true;
+        }
+        else if (withdrawalMethod=="Growing Perpetuity")
+        {
+        	document.getElementById("valueAtDeath").disabled = true;
+        }
+        else if (withdrawalMethod=="No Income")
+        {
+        	document.getElementById("valueAtDeath").disabled = true;
+        }
+        else
+        {
+            document.getElementById("valueAtDeath").disabled = true;
+        }
       }
     </script>
 

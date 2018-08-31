@@ -40,6 +40,22 @@
     cursor: pointer; /* Cursor on hover */
 }
 
+.slider:disabled {
+    background: #EEEEEE;
+}
+
+.slider:disabled:hover {
+    opacity: 0.7;
+}
+
+.slider:disabled::-webkit-slider-thumb {
+    background: #d3d3d3;
+}
+
+.slider:disabled::-moz-range-thumb {
+    background: #d3d3d3;
+}
+
 
 
 .onoffswitch {
