@@ -244,6 +244,10 @@
         {
         	initialPayment = RIGrowingPerpetuity(savingsAtRetirement, postRetirementReturn.value/100, inflationRate.value/100);
         }
+        else if (withdrawalMethod=="No Income")
+        {
+        	initialPayent = 0;
+        }
         else
         {
             initialPayment = 0;
