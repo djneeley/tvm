@@ -176,6 +176,7 @@
     </div>
 
     <h2>Options</h2>
+      <p class="lead">Savings At Retirement: $<span id="savingsAtRetirementLabel">0</span></p>
       <div class="onoffswitch">
         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked onchange="updateResult()">
         <label class="onoffswitch-label" for="myonoffswitch">
@@ -227,6 +228,10 @@
         {
         	initialPayment = RIFixedDollar(savingsAtRetirement, yearsInRetirement.value, postRetirementReturn.value/100, inflationRate.value/100, fixedDollarRate.value/100);
         }
+        else if (withdrawalMethod=="Fixed Percentage")
+        {
+        	initialPayment = RIFixedPercentage(savingsAtRetirement, fixedPercentageRate.value/100);
+        }
         else if (withdrawalMethod=="Growing Perpetuity")
         {
         	initialPayment = RIGrowingPerpetuity(savingsAtRetirement, postRetirementReturn.value/100, inflationRate.value/100);
@@ -238,6 +243,7 @@
 
         var retirementIncome = (Math.round(PVFutureSum(initialPayment, yearsToRetirement.value, inflationRate.value/100)/1000)*1000).formatMoney(0);
         document.querySelector('#retirementIncome').textContent = retirementIncome;
+        document.querySelector('#savingsAtRetirementLabel').textContent = (savingsAtRetirement).formatMoney(0);
         return;
       }
     </script>
