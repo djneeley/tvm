@@ -127,7 +127,6 @@
                 <option>Growing Perpetuity</option>
                 <option>No Income</option>
             </select>
-            <p class="lead"><span id="withdrawalMethodLabel">Growing Annuity</span></p>
         </div>
         <div class="col-md-4 mb-4" id="fixedDollarRateDiv">
             <h6>Fixed Dollar Rate</h6>
@@ -216,7 +215,6 @@
         var fixedPercentageRate = document.querySelector('#fixedPercentageRate');
         document.querySelector('#fixedPercentageRateLabel').textContent = (Number(fixedPercentageRate.value)).formatMoney(1);
         var withdrawalMethod = document.getElementById('withdrawalMethod').value;
-        document.querySelector('#withdrawalMethodLabel').textContent = withdrawalMethod;
         var monthlyReturn = annualToMonthly(preRetirementReturn.value/100);
         var monthlySavingsIncrease = annualToMonthly(savingsIncrease.value/100);
         var savingsAtRetirement = FVPresentSum(currentSavings.value, yearsToRetirement.value*12,monthlyReturn) + FVGrowingAnnuity(monthlySavings.value, yearsToRetirement.value*12, monthlyReturn, monthlySavingsIncrease);
