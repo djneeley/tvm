@@ -207,6 +207,7 @@
         document.querySelector('#inflationRateLabel').textContent = (Number(inflationRate.value)).formatMoney(1);
         var yearsToRetirement = document.querySelector('#yearsToRetirement');
         document.querySelector('#yearsToRetirementLabel').textContent = yearsToRetirement.value;
+        document.querySelector('#additionalSaved').textContent = (Number(PVGrowingAnnuityDue(monthlySavings.value * 12, yearsToRetirement.value, 0, savingsIncrease.value/100))).formatMoney(0);
         var yearsInRetirement = document.querySelector('#yearsInRetirement');
         document.querySelector('#yearsInRetirementLabel').textContent = yearsInRetirement.value;
         var valueAtDeath = document.querySelector('#valueAtDeath');
