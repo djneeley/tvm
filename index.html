@@ -129,14 +129,14 @@
             </select>
             <p class="lead"><span id="withdrawalMethodLabel">Growing Annuity</span></p>
         </div>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-4 mb-4" id="fixedDollarRateDiv">
             <h6>Fixed Dollar Rate</h6>
             <p class="lead"><span id="fixedDollarRateLabel">4</span>% per year</p>
             <div class="slidecontainer">
                 <input type="range" id="fixedDollarRate" min="0" max="12" step="0.1" value="4" oninput="updateResult()" class="slider">
             </div>
         </div>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-4 mb-4" id="fixedPercentageRateDiv">
             <h6>Fixed Percentage Rate</h6>
             <p class="lead"><span id="fixedPercentageRateLabel">6</span>% per year</p>
             <div class="slidecontainer">
@@ -266,49 +266,65 @@
         if (withdrawalMethod=="Growing Annuity")
         {
             document.getElementById("fixedDollarRate").disabled = true;
+            document.getElementById("fixedDollarRateDiv").style.color = "#d3d3d3";
             document.getElementById("fixedPercentageRate").disabled = true;
+            document.getElementById("fixedPercentageRateDiv").style.color = "#d3d3d3";
             document.getElementById("valueAtDeath").disabled = true;
         }
         else if (withdrawalMethod=="Fixed Dollar")
         {
             document.getElementById("fixedDollarRate").disabled = false;
+            document.getElementById("fixedDollarRateDiv").style.color = "#000000";
             document.getElementById("fixedPercentageRate").disabled = true;
+            document.getElementById("fixedPercentageRateDiv").style.color = "#d3d3d3";
             document.getElementById("valueAtDeath").disabled = true;
         }
         else if (withdrawalMethod=="Fixed Percentage")
         {
         	document.getElementById("fixedDollarRate").disabled = true;
+            document.getElementById("fixedDollarRateDiv").style.color = "#d3d3d3";
             document.getElementById("fixedPercentageRate").disabled = false;
+            document.getElementById("fixedPercentageRateDiv").style.color = "#000000";
             document.getElementById("valueAtDeath").disabled = true;
         }
         else if (withdrawalMethod=="Specified Death Benefit")
         {
         	document.getElementById("fixedDollarRate").disabled = true;
+            document.getElementById("fixedDollarRateDiv").style.color = "#d3d3d3";
             document.getElementById("fixedPercentageRate").disabled = true;
+            document.getElementById("fixedPercentageRateDiv").style.color = "#d3d3d3";
             document.getElementById("valueAtDeath").disabled = false;
         }
         else if (withdrawalMethod=="Capital Preservation")
         {
         	document.getElementById("fixedDollarRate").disabled = true;
+            document.getElementById("fixedDollarRateDiv").style.color = "#d3d3d3";
             document.getElementById("fixedPercentageRate").disabled = true;
+            document.getElementById("fixedPercentageRateDiv").style.color = "#d3d3d3";
             document.getElementById("valueAtDeath").disabled = true;
         }
         else if (withdrawalMethod=="Growing Perpetuity")
         {
         	document.getElementById("fixedDollarRate").disabled = true;
+            document.getElementById("fixedDollarRateDiv").style.color = "#d3d3d3";
             document.getElementById("fixedPercentageRate").disabled = true;
+            document.getElementById("fixedPercentageRateDiv").style.color = "#d3d3d3";
             document.getElementById("valueAtDeath").disabled = true;
         }
         else if (withdrawalMethod=="No Income")
         {
         	document.getElementById("fixedDollarRate").disabled = true;
+            document.getElementById("fixedDollarRateDiv").style.color = "#d3d3d3";
             document.getElementById("fixedPercentageRate").disabled = true;
+            document.getElementById("fixedPercentageRateDiv").style.color = "#d3d3d3";
             document.getElementById("valueAtDeath").disabled = true;
         }
         else
         {
             document.getElementById("fixedDollarRate").disabled = true;
+            document.getElementById("fixedDollarRateDiv").style.color = "#d3d3d3";
             document.getElementById("fixedPercentageRate").disabled = true;
+            document.getElementById("fixedPercentageRateDiv").style.color = "#d3d3d3";
             document.getElementById("valueAtDeath").disabled = true;
         }
       }
