@@ -265,34 +265,50 @@
         var withdrawalMethod = document.getElementById('withdrawalMethod').value;
         if (withdrawalMethod=="Growing Annuity")
         {
+            document.getElementById("fixedDollarRate").disabled = true;
+            document.getElementById("fixedPercentageRate").disabled = true;
             document.getElementById("valueAtDeath").disabled = true;
         }
         else if (withdrawalMethod=="Fixed Dollar")
         {
-        	document.getElementById("valueAtDeath").disabled = true;
+            document.getElementById("fixedDollarRate").disabled = false;
+            document.getElementById("fixedPercentageRate").disabled = true;
+            document.getElementById("valueAtDeath").disabled = true;
         }
         else if (withdrawalMethod=="Fixed Percentage")
         {
-        	document.getElementById("valueAtDeath").disabled = true;
+        	document.getElementById("fixedDollarRate").disabled = true;
+            document.getElementById("fixedPercentageRate").disabled = false;
+            document.getElementById("valueAtDeath").disabled = true;
         }
         else if (withdrawalMethod=="Specified Death Benefit")
         {
-        	document.getElementById("valueAtDeath").disabled = false;
+        	document.getElementById("fixedDollarRate").disabled = true;
+            document.getElementById("fixedPercentageRate").disabled = true;
+            document.getElementById("valueAtDeath").disabled = false;
         }
         else if (withdrawalMethod=="Capital Preservation")
         {
-        	document.getElementById("valueAtDeath").disabled = true;
+        	document.getElementById("fixedDollarRate").disabled = true;
+            document.getElementById("fixedPercentageRate").disabled = true;
+            document.getElementById("valueAtDeath").disabled = true;
         }
         else if (withdrawalMethod=="Growing Perpetuity")
         {
-        	document.getElementById("valueAtDeath").disabled = true;
+        	document.getElementById("fixedDollarRate").disabled = true;
+            document.getElementById("fixedPercentageRate").disabled = true;
+            document.getElementById("valueAtDeath").disabled = true;
         }
         else if (withdrawalMethod=="No Income")
         {
-        	document.getElementById("valueAtDeath").disabled = true;
+        	document.getElementById("fixedDollarRate").disabled = true;
+            document.getElementById("fixedPercentageRate").disabled = true;
+            document.getElementById("valueAtDeath").disabled = true;
         }
         else
         {
+            document.getElementById("fixedDollarRate").disabled = true;
+            document.getElementById("fixedPercentageRate").disabled = true;
             document.getElementById("valueAtDeath").disabled = true;
         }
       }
