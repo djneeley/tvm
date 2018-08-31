@@ -94,7 +94,7 @@
                 </div>
                 <div class="col-4 text-right">
                     <label class="switch">
-                      <input type="checkbox">
+                      <input type="checkbox" checked>
                       <span class="knob round"></span>
                     </label>
                 </div>
@@ -221,6 +221,7 @@
         var monthlyReturn = annualToMonthly(preRetirementReturn.value/100);
         var monthlySavingsIncrease = annualToMonthly(savingsIncrease.value/100);
         var savingsAtRetirement = FVPresentSum(currentSavings.value, yearsToRetirement.value*12,monthlyReturn) + FVGrowingAnnuity(monthlySavings.value, yearsToRetirement.value*12, monthlyReturn, monthlySavingsIncrease);
+        document.querySelector('#savingsAtRetirement').textContent = (savingsAtRetirement).formatMoney(0);
         var initialPayment = 0;
         if (withdrawalMethod=="Growing Annuity")
         {
@@ -257,7 +258,6 @@
 
         var retirementIncome = (Math.round(PVFutureSum(initialPayment, yearsToRetirement.value, inflationRate.value/100)/1000)*1000).formatMoney(0);
         document.querySelector('#retirementIncome').textContent = retirementIncome;
-        document.querySelector('#savingsAtRetirementLabel').textContent = (savingsAtRetirement).formatMoney(0);
         return;
       }
         
