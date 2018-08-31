@@ -236,6 +236,10 @@
         {
         	initialPayment = RISpecifiedDB(savingsAtRetirement, yearsInRetirement.value, postRetirementReturn.value/100, inflationRate.value/100, valueAtDeath.value);
         }
+        else if (withdrawalMethod=="Capital Preservation")
+        {
+        	initialPayment = RICapitalPreservation(savingsAtRetirement, postRetirementReturn.value/100);
+        }
         else if (withdrawalMethod=="Growing Perpetuity")
         {
         	initialPayment = RIGrowingPerpetuity(savingsAtRetirement, postRetirementReturn.value/100, inflationRate.value/100);
