@@ -253,7 +253,7 @@
         else if (withdrawalMethod=="Growing Perpetuity")
         {
         	initialPayment = RIGrowingPerpetuity(savingsAtRetirement, postRetirementReturn.value/100, inflationRate.value/100);
-            // need totalWithdrawals
+            totalWithdrawals = PVGrowingAnnuityDue(initialPayment, yearsInRetirement.value, 0, inflationRate.value/100);
             valueAtDeath = FVPresentSum(savingsAtRetirement, yearsInRetirement.value, inflationRate.value/100)
         }
         else if (withdrawalMethod=="No Income")
