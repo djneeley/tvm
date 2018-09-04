@@ -227,7 +227,7 @@
         else if (withdrawalMethod=="Fixed Dollar")
         {
         	initialPayment = RIFixedDollar(savingsAtRetirement, yearsInRetirement.value, postRetirementReturn.value/100, inflationRate.value/100, fixedDollarRate.value/100);
-            // need valueAtDeath
+            valueAtDeath = FVPresentSum(savingsAtRetirement - PVGrowingAnnuityDue(initialPayment, yearsInRetirement.value, postRetirementReturn.value/100, inflationRate.value/100), yearsInRetirement.value, postRetirementReturn.value/100)
         }
         else if (withdrawalMethod=="Fixed Percentage")
         {
