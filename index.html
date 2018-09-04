@@ -232,7 +232,7 @@
         else if (withdrawalMethod=="Fixed Percentage")
         {
         	initialPayment = RIFixedPercentage(savingsAtRetirement, fixedPercentageRate.value/100);
-            // need valueAtDeath
+            valueAtDeath = FVPresentSum(savingsAtRetirement, yearsInRetirement.value, ((postRetirementReturn.value/100)-(fixedPercentageRate.value/100)-((postRetirementReturn.value/100)*(fixedPercentageRate.value/100))));
         }
         else if (withdrawalMethod=="Specified Death Benefit")
         {
