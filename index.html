@@ -230,7 +230,7 @@
         {
         	initialPayment = RIFixedDollar(savingsAtRetirement, yearsInRetirement.value, postRetirementReturn.value/100, inflationRate.value/100, fixedDollarRate.value/100);
             totalWithdrawals = PVGrowingAnnuityDue(initialPayment, yearsInRetirement.value, 0, inflationRate.value/100);
-            valueAtDeath = FVPresentSum(savingsAtRetirement - PVGrowingAnnuityDue(initialPayment, yearsInRetirement.value, postRetirementReturn.value/100, inflationRate.value/100), yearsInRetirement.value, postRetirementReturn.value/100)
+            valueAtDeath = FVPresentSum(savingsAtRetirement - PVGrowingAnnuityDue(initialPayment, yearsInRetirement.value, postRetirementReturn.value/100, inflationRate.value/100), yearsInRetirement.value, postRetirementReturn.value/100);
         }
         else if (withdrawalMethod=="Fixed Percentage")
         {
@@ -254,13 +254,13 @@
         {
         	initialPayment = RIGrowingPerpetuity(savingsAtRetirement, postRetirementReturn.value/100, inflationRate.value/100);
             totalWithdrawals = PVGrowingAnnuityDue(initialPayment, yearsInRetirement.value, 0, inflationRate.value/100);
-            valueAtDeath = FVPresentSum(savingsAtRetirement, yearsInRetirement.value, inflationRate.value/100)
+            valueAtDeath = FVPresentSum(savingsAtRetirement, yearsInRetirement.value, inflationRate.value/100);
         }
         else if (withdrawalMethod=="No Income")
         {
         	initialPayent = 0;
             totalWithdrawals = 0;
-            valueAtDeath = FVPresentSum(savingsAtRetirement, yearsInRetirement.value, postRetirementReturn.value/100)
+            valueAtDeath = FVPresentSum(savingsAtRetirement, yearsInRetirement.value, postRetirementReturn.value/100);
         }
         else
         {
@@ -276,6 +276,7 @@
         document.querySelector('#retirementIncome').textContent = retirementIncome;
         document.querySelector('#totalWithdrawalsLabel').textContent = (Number(totalWithdrawals)).formatMoney(0);
         document.querySelector('#valueAtDeathLabel').textContent = (Number(valueAtDeath)).formatMoney(0);
+        document.getElementById('valueAtDeath').max = FVPresentSum(savingsAtRetirement, yearsInRetirement.value, postRetirementReturn.value/100);
         return;
       }
         
