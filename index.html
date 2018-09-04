@@ -247,7 +247,7 @@
         else if (withdrawalMethod=="Capital Preservation")
         {
         	initialPayment = RICapitalPreservation(savingsAtRetirement, postRetirementReturn.value/100);
-            // need totalWithdrawals
+            totalWithdrawals = initialPayment * yearsInRetirement.value;
             valueAtDeath = savingsAtRetirement;
         }
         else if (withdrawalMethod=="Growing Perpetuity")
