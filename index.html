@@ -153,7 +153,7 @@
         </div>
         <div class="col-md-4 mb-4">
             <h6>Total Withdrawals</h6>
-            <p class="lead">$<span id="totalWithdrawals">0</span></p>
+            <p class="lead">$<span id="totalWithdrawalsLabel">0</span></p>
         </div>
         <div class="col-md mb-4">
             <h6>Value at Death</h6>
@@ -219,44 +219,53 @@
         var savingsAtRetirement = FVPresentSum(currentSavings.value, yearsToRetirement.value*12,monthlyReturn) + FVGrowingAnnuity(monthlySavings.value, yearsToRetirement.value*12, monthlyReturn, monthlySavingsIncrease);
         document.querySelector('#savingsAtRetirement').textContent = (savingsAtRetirement).formatMoney(0);
         var initialPayment = 0;
+        var totalWithdrawals = 0;
         if (withdrawalMethod=="Growing Annuity")
         {
             initialPayment = RIGrowingAnnuity(savingsAtRetirement,yearsInRetirement.value,postRetirementReturn.value/100,inflationRate.value/100);
+            totalWithdrawals = PVGrowingAnnuityDue(initialPayment, yearsInRetirement.value, 0, inflationRate.value/100);
             valueAtDeath = 0;
         }
         else if (withdrawalMethod=="Fixed Dollar")
         {
         	initialPayment = RIFixedDollar(savingsAtRetirement, yearsInRetirement.value, postRetirementReturn.value/100, inflationRate.value/100, fixedDollarRate.value/100);
+            // need totalWithdrawals
             valueAtDeath = FVPresentSum(savingsAtRetirement - PVGrowingAnnuityDue(initialPayment, yearsInRetirement.value, postRetirementReturn.value/100, inflationRate.value/100), yearsInRetirement.value, postRetirementReturn.value/100)
         }
         else if (withdrawalMethod=="Fixed Percentage")
         {
         	initialPayment = RIFixedPercentage(savingsAtRetirement, fixedPercentageRate.value/100);
+            // need totalWithdrawals
             valueAtDeath = FVPresentSum(savingsAtRetirement, yearsInRetirement.value, ((postRetirementReturn.value/100)-(fixedPercentageRate.value/100)-((postRetirementReturn.value/100)*(fixedPercentageRate.value/100))));
         }
         else if (withdrawalMethod=="Specified Death Benefit")
         {
         	initialPayment = RISpecifiedDB(savingsAtRetirement, yearsInRetirement.value, postRetirementReturn.value/100, inflationRate.value/100, valueAtDeath);
+            // need totalWithdrawals
             // no valueAtDeath calculation needed as this is set by the user in this method
         }
         else if (withdrawalMethod=="Capital Preservation")
         {
         	initialPayment = RICapitalPreservation(savingsAtRetirement, postRetirementReturn.value/100);
+            // need totalWithdrawals
             valueAtDeath = savingsAtRetirement;
         }
         else if (withdrawalMethod=="Growing Perpetuity")
         {
         	initialPayment = RIGrowingPerpetuity(savingsAtRetirement, postRetirementReturn.value/100, inflationRate.value/100);
+            // need totalWithdrawals
             valueAtDeath = FVPresentSum(savingsAtRetirement, yearsInRetirement.value, inflationRate.value/100)
         }
         else if (withdrawalMethod=="No Income")
         {
         	initialPayent = 0;
+            totalWithdrawals = 0;
             valueAtDeath = FVPresentSum(savingsAtRetirement, yearsInRetirement.value, postRetirementReturn.value/100)
         }
         else
         {
             initialPayment = 0;
+            totalWithdrawals = 0;
             valueAtDeath = 0;
         }
           
@@ -265,6 +274,7 @@
 
         var retirementIncome = (Math.round(PVFutureSum(initialPayment, yearsToRetirement.value, inflationRate.value/100)/1000)*1000).formatMoney(0);
         document.querySelector('#retirementIncome').textContent = retirementIncome;
+        document.querySelector('#totalWithdrawalsLabel').textContent = (Number(totalWithdrawals)).formatMoney(0);
         document.querySelector('#valueAtDeathLabel').textContent = (Number(valueAtDeath)).formatMoney(0);
         return;
       }
