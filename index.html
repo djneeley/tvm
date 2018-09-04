@@ -235,7 +235,7 @@
         else if (withdrawalMethod=="Fixed Percentage")
         {
         	initialPayment = RIFixedPercentage(savingsAtRetirement, fixedPercentageRate.value/100);
-            // need totalWithdrawals
+            totalWithdrawals = PVGrowingAnnuityDue(initialPayment, yearsInRetirement.value, 0, ((postRetirementReturn.value/100)-(fixedPercentageRate.value/100)-((postRetirementReturn.value/100)*(fixedPercentageRate.value/100))));
             valueAtDeath = FVPresentSum(savingsAtRetirement, yearsInRetirement.value, ((postRetirementReturn.value/100)-(fixedPercentageRate.value/100)-((postRetirementReturn.value/100)*(fixedPercentageRate.value/100))));
         }
         else if (withdrawalMethod=="Specified Death Benefit")
