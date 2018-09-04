@@ -241,7 +241,7 @@
         else if (withdrawalMethod=="Specified Death Benefit")
         {
         	initialPayment = RISpecifiedDB(savingsAtRetirement, yearsInRetirement.value, postRetirementReturn.value/100, inflationRate.value/100, valueAtDeath);
-            // need totalWithdrawals
+            totalWithdrawals = PVGrowingAnnuityDue(initialPayment, yearsInRetirement.value, 0, inflationRate.value/100);
             // no valueAtDeath calculation needed as this is set by the user in this method
         }
         else if (withdrawalMethod=="Capital Preservation")
