@@ -196,7 +196,7 @@
         document.querySelector('#inflationRateLabel').textContent = (Number(inflationRate.value)).formatMoney(1);
         var yearsToRetirement = document.querySelector('#yearsToRetirement');
         document.querySelector('#yearsToRetirementLabel').textContent = yearsToRetirement.value;
-        document.querySelector('#additionalSaved').textContent = (Number(PVGrowingAnnuityDue(monthlySavings.value * 12, yearsToRetirement.value, 0, savingsIncrease.value/100))).formatMoney(0);
+        document.querySelector('#additionalSaved').textContent = (Math.round(Number(PVGrowingAnnuityDue(monthlySavings.value * 12, yearsToRetirement.value, 0, savingsIncrease.value/100))/1000)*1000).formatMoney(0);
         var yearsInRetirement = document.querySelector('#yearsInRetirement');
         document.querySelector('#yearsInRetirementLabel').textContent = yearsInRetirement.value;
         var valueAtDeath = document.querySelector('#valueAtDeath').value;
@@ -280,7 +280,7 @@
         {
           document.querySelector('#retirementIncome').textContent = retirementIncome;
         }
-        document.querySelector('#totalWithdrawalsLabel').textContent = (Number(totalWithdrawals)).formatMoney(0);
+        document.querySelector('#totalWithdrawalsLabel').textContent = (Math.round(Number(totalWithdrawals)/1000)*1000).formatMoney(0);
         if (document.getElementById("valueAtDeathPV").checked)
         {
             document.querySelector('#valueAtDeathLabel').textContent = (Math.round(valueAtDeath/1000)*1000).formatMoney(0);
