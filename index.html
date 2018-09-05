@@ -163,7 +163,7 @@
                 </div>
                 <div class="col-4 text-right">
                     <label class="switch">
-                      <input type="checkbox" checked>
+                      <input type="checkbox" checked id="valueAtDeathPV" onchange="updateResult()">
                       <span class="knob round"></span>
                     </label>
                 </div>
@@ -290,7 +290,14 @@
           document.querySelector('#retirementIncome').textContent = retirementIncome;
         }
         document.querySelector('#totalWithdrawalsLabel').textContent = (Number(totalWithdrawals)).formatMoney(0);
-        document.querySelector('#valueAtDeathLabel').textContent = (Number(valueAtDeath)).formatMoney(0);
+        if (document.getElementById("valueAtDeathPV").checked)
+        {
+            document.querySelector('#valueAtDeathLabel').textContent = (Math.round(valueAtDeath/1000)*1000).formatMoney(0);
+        }
+        else
+        {
+            document.querySelector('#valueAtDeathLabel').textContent = (Math.round(PVFutureSum(valueAtDeath,parseFloat(yearsToRetirement.value)+parseFloat(yearsInRetirement.value),inflationRate.value/100)/1000)*1000).formatMoney(0);
+        }
         document.getElementById('fixedDollarRate').max = RIGrowingAnnuity(savingsAtRetirement,yearsInRetirement.value,postRetirementReturn.value/100,inflationRate.value/100) / savingsAtRetirement * 100;
         document.getElementById('valueAtDeath').max = FVPresentSum(savingsAtRetirement, yearsInRetirement.value, postRetirementReturn.value/100);
         return;
