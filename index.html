@@ -302,11 +302,74 @@
         var retirementIncome = (Math.round(PVFutureSum(initialPayment, yearsToRetirement.value, inflationRate.value/100)/1000)*1000).formatMoney(0);
         if (document.getElementById("retirementIncomePV").checked)
         {
-          document.querySelector('#retirementIncome').textContent = (Math.round(initialPayment/1000)*1000).formatMoney(0);
+            document.querySelector('#retirementIncome').textContent = (Math.round(initialPayment/1000)*1000).formatMoney(0);
         }
         else
         {
-          document.querySelector('#retirementIncome').textContent = retirementIncome;
+            document.querySelector('#retirementIncome').textContent = retirementIncome;
+        }
+        
+        if (document.getElementById("finalRetirementIncomePV").checked)
+        {
+          if (withdrawalMethod=="Growing Annuity")
+            {
+                document.querySelector('#finalRetirementIncome').textContent = (Math.round(FVPresentSum(initialPayment, yearsInRetirement.value, inflationRate.value/100)/1000)*1000).formatMoney(0);
+            }
+            else if (withdrawalMethod=="Fixed Dollar")
+            {
+                document.querySelector('#finalRetirementIncome').textContent = (Math.round(FVPresentSum(initialPayment, yearsInRetirement.value, inflationRate.value/100)/1000)*1000).formatMoney(0);
+            }
+            else if (withdrawalMethod=="Fixed Percentage")
+            {
+                document.querySelector('#finalRetirementIncome').textContent = (Math.round(FVPresentSum(savingsAtRetirement, yearsInRetirement.value-1, ((postRetirementReturn.value/100)-(fixedPercentageRate.value/100)-((postRetirementReturn.value/100)*(fixedPercentageRate.value/100))))*fixedPercentageRate.value/100/1000)*1000).formatMoney(0);
+            }
+            else if (withdrawalMethod=="Specified Death Benefit")
+            {
+                document.querySelector('#finalRetirementIncome').textContent = (Math.round(FVPresentSum(initialPayment, yearsInRetirement.value, inflationRate.value/100)/1000)*1000).formatMoney(0);
+            }
+            else if (withdrawalMethod=="Capital Preservation")
+            {
+                document.querySelector('#finalRetirementIncome').textContent = (Math.round(initialPayment/1000)*1000).formatMoney(0);
+            }
+            else if (withdrawalMethod=="Growing Perpetuity")
+            {
+                document.querySelector('#finalRetirementIncome').textContent = (Math.round(FVPresentSum(initialPayment, yearsInRetirement.value, inflationRate.value/100)/1000)*1000).formatMoney(0);
+            }
+            else if (withdrawalMethod=="No Income")
+            {
+                document.querySelector('#finalRetirementIncome').textContent = 0;
+            }
+        }
+        else
+        {
+          if (withdrawalMethod=="Growing Annuity")
+            {
+                document.querySelector('#finalRetirementIncome').textContent = retirementIncome;
+            }
+            else if (withdrawalMethod=="Fixed Dollar")
+            {
+                document.querySelector('#finalRetirementIncome').textContent = retirementIncome;
+            }
+            else if (withdrawalMethod=="Fixed Percentage")
+            {
+                document.querySelector('#finalRetirementIncome').textContent = (Math.round(PVFutureSum(FVPresentSum(savingsAtRetirement, yearsInRetirement.value-1, ((postRetirementReturn.value/100)-(fixedPercentageRate.value/100)-((postRetirementReturn.value/100)*(fixedPercentageRate.value/100))))*fixedPercentageRate.value/100,yearsInRetirement.value-1+Number(yearsToRetirement.value),inflationRate.value/100)/1000)*1000).formatMoney(0);
+            }
+            else if (withdrawalMethod=="Specified Death Benefit")
+            {
+                document.querySelector('#finalRetirementIncome').textContent = retirementIncome;
+            }
+            else if (withdrawalMethod=="Capital Preservation")
+            {
+                document.querySelector('#finalRetirementIncome').textContent = (Math.round(PVFutureSum(initialPayment,yearsInRetirement.value-1+Number(yearsToRetirement.value),inflationRate.value/100)/1000)*1000).formatMoney(0);
+            }
+            else if (withdrawalMethod=="Growing Perpetuity")
+            {
+                document.querySelector('#finalRetirementIncome').textContent = retirementIncome;
+            }
+            else if (withdrawalMethod=="No Income")
+            {
+                document.querySelector('#finalRetirementIncome').textContent = 0;
+            }
         }
         document.querySelector('#totalWithdrawalsLabel').textContent = (Math.round(Number(totalWithdrawals)/1000)*1000).formatMoney(0);
         if (document.getElementById("valueAtDeathPV").checked)
