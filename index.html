@@ -26,58 +26,28 @@
 
     <div class="sticky-top bg-white pb-2">
         <div class="row">
-        <div class="col-md-4">
-        <h4>Retirement Income</h4>
-                <div class="row">
-                    <div class="col-8">
-                        <p class="lead">$<span id="retirementIncome">0</span></p>
-                    </div>
-                    <div class="col-4 text-right">
-                        <label class="switch">
-                          <input type="checkbox" id="retirementIncomePV" onchange="updateResult()">
-                          <span class="knob round"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
+        
         </div>
     </div>
     <div class="row">
-        <div class="col-md mb-4">
+        <h5>How much have you saved for retirement?</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-3 mb-3">
             <h6>Current Savings</h6>
             <p class="lead">$<span id="currentSavingsLabel">10,000</span></p>
             <div class="slidecontainer">
                 <input type="range" id="currentSavings" min="0" max="2000000" step="5000" value="0" oninput="updateResult()" class="slider">
             </div>
         </div>
-        <div class="col-md mb-4">
-            <h6>Monthly Savings</h6>
-            <p class="lead">$<span id="monthlySavingsLabel">1000</span> per month</p>
-            <div class="slidecontainer">
-                <input type="range" id="monthlySavings" min="0" max="10000" step="50"  value="0" oninput="updateResult()" class="slider">
-            </div>
-        </div>
-        <div class="col-md mb-4">
-            <h6>Savings Increase</h6>
-            <p class="lead"><span id="savingsIncreaseLabel">3</span>% per year</p>
-            <div class="slidecontainer">
-                <input type="range" id="savingsIncrease" min="0" max="10" step="0.5" value="0" oninput="updateResult()" class="slider">
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 mb-4">
+        <div class="col-md-3 mb-3">
             <h6>Years to Retirement</h6>
             <p class="lead"><span id="yearsToRetirementLabel">30</span> years</p>
             <div class="slidecontainer">
                 <input type="range" id="yearsToRetirement" min="0" max="50" step="1" value="0" oninput="updateResult()" class="slider">
             </div>
         </div>
-        <div class="col-md-4 mb-4">
-            <h6>Additional Saved</h6>
-            <p class="lead">$<span id="additionalSaved">0</span></p>
-        </div>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-3 mb-3">
             <h6>Return Before Retirement</h6>
             <p class="lead"><span id="preRetirementReturnLabel">8</span>% per year</p>
             <div class="slidecontainer">
@@ -86,7 +56,37 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 mb-4">
+        <h5>How much more will you save for retirement?</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <h6>Monthly Savings</h6>
+            <p class="lead">$<span id="monthlySavingsLabel">1000</span> per month</p>
+            <div class="slidecontainer">
+                <input type="range" id="monthlySavings" min="0" max="10000" step="50"  value="0" oninput="updateResult()" class="slider">
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <h6>Savings Increase</h6>
+            <p class="lead"><span id="savingsIncreaseLabel">3</span>% per year</p>
+            <div class="slidecontainer">
+                <input type="range" id="savingsIncrease" min="0" max="10" step="0.5" value="0" oninput="updateResult()" class="slider">
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <h6>Final Monthly Savings</h6>
+            <p class="lead">$<span id="finalMonthlySavingsLabel">1000</span> per month</p>
+        </div>
+        <div class="col-md-3 mb-3">
+            <h6>Additional Saved</h6>
+            <p class="lead">$<span id="additionalSaved">0</span></p>
+        </div>
+    </div>
+    <div class="row">
+        <h5>How much income will you generate in retirement?</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-3 mb-3">
             <h6>Savings at Retirement</h6>
             <div class="row">
                 <div class="col-8">
@@ -100,23 +100,21 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-3 mb-3">
             <h6>Years in Retirement</h6>
             <p class="lead"><span id="yearsInRetirementLabel">40</span> years</p>
             <div class="slidecontainer">
                 <input type="range" id="yearsInRetirement" min="1" max="50" step="1" value="30" oninput="updateResult()" class="slider">
             </div>
         </div>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-3 mb-3">
             <h6>Return During Retirement</h6>
             <p class="lead"><span id="postRetirementReturnLabel">6</span>% per year</p>
             <div class="slidecontainer">
                 <input type="range" id="postRetirementReturn" min="0" max="12" step="0.5" value="0" oninput="updateResult()" class="slider">
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 mb-4">
+        <div class="col-md-3 mb-3">
             <h6>Withdrawal Method</h6>
             <select class="form-control" id="withdrawalMethod" onchange="updateResult()">
                 <option>Growing Annuity</option>
@@ -128,14 +126,23 @@
                 <option>No Income</option>
             </select>
         </div>
-        <div class="col-md-4 mb-4" id="fixedDollarRateDiv">
+    </div>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <h6>Inflation Rate</h6>
+            <p class="lead"><span id="inflationRateLabel">3</span>% per year</p>
+            <div class="slidecontainer">
+                <input type="range" id="inflationRate" min="0" max="5" step="0.25" value="3" oninput="updateResult()" class="slider">
+            </div>
+        </div>
+        <div class="col-md-3 mb-3" id="fixedDollarRateDiv">
             <h6>Fixed Dollar Rate</h6>
             <p class="lead"><span id="fixedDollarRateLabel">4</span>% per year</p>
             <div class="slidecontainer">
                 <input type="range" id="fixedDollarRate" min="0" max="12" step="0.1" value="4" oninput="updateResult()" class="slider">
             </div>
         </div>
-        <div class="col-md-4 mb-4" id="fixedPercentageRateDiv">
+        <div class="col-md-3 mb-3" id="fixedPercentageRateDiv">
             <h6>Fixed Percentage Rate</h6>
             <p class="lead"><span id="fixedPercentageRateLabel">6</span>% per year</p>
             <div class="slidecontainer">
@@ -144,18 +151,39 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 mb-4">
-            <h6>Inflation Rate</h6>
-            <p class="lead"><span id="inflationRateLabel">3</span>% per year</p>
-            <div class="slidecontainer">
-                <input type="range" id="inflationRate" min="0" max="5" step="0.25" value="3" oninput="updateResult()" class="slider">
+        <div class="col-md-3 mb-3">
+            <h6>Retirement Income (First Year)</h6>
+            <div class="row">
+                <div class="col-8">
+                    <p class="lead">$<span id="retirementIncome">0</span></p>
+                </div>
+                <div class="col-4 text-right">
+                    <label class="switch">
+                      <input type="checkbox" id="retirementIncomePV" onchange="updateResult()">
+                      <span class="knob round"></span>
+                    </label>
+                </div>
             </div>
         </div>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-3 mb-3">
+            <h6>Retirement Income (Last Year)</h6>
+            <div class="row">
+                <div class="col-8">
+                    <p class="lead">$<span id="finalRetirementIncome">0</span></p>
+                </div>
+                <div class="col-4 text-right">
+                    <label class="switch">
+                      <input type="checkbox" id="finalRetirementIncomePV" onchange="updateResult()">
+                      <span class="knob round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
             <h6>Total Withdrawals</h6>
             <p class="lead">$<span id="totalWithdrawalsLabel">0</span></p>
         </div>
-        <div class="col-md mb-4">
+        <div class="col-md-3 mb-3">
             <h6>Value at Death</h6>
             <div class="row">
                 <div class="col-8">
@@ -173,7 +201,6 @@
             </div>
         </div>
     </div>
-
     </div>
 
     <script language="javascript" type="text/javascript">
