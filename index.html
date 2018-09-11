@@ -222,6 +222,7 @@
         var inflationRate = document.querySelector('#inflationRate');
         document.querySelector('#inflationRateLabel').textContent = (Number(inflationRate.value)).formatMoney(2);
         var yearsToRetirement = document.querySelector('#yearsToRetirement');
+        document.querySelector('#finalMonthlySavingsLabel').textContent = (FVPresentSum(Number(monthlySavings.value),Number(yearsToRetirement.value),Number(savingsIncrease.value)/100)).formatMoney(0);
         document.querySelector('#yearsToRetirementLabel').textContent = yearsToRetirement.value;
         document.querySelector('#additionalSaved').textContent = (Math.round(Number(PVGrowingAnnuityDue(monthlySavings.value * 12, yearsToRetirement.value, 0, savingsIncrease.value/100))/1000)*1000).formatMoney(0);
         var yearsInRetirement = document.querySelector('#yearsInRetirement');
