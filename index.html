@@ -54,7 +54,7 @@
                 <input type="range" id="yearsToRetirement" min="0" max="50" step="1" value="0" oninput="updateResult()" class="slider">
             </div>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-3 mb-3" id="preRetirementReturnDiv">
             <h6>Return Before Retirement</h6>
             <p class="lead"><span id="preRetirementReturnLabel">8</span>% per year</p>
             <div class="slidecontainer">
@@ -167,6 +167,10 @@
             <div class="slidecontainer">
                 <input type="range" id="fixedPercentageRate" min="0" max="12" step="0.1" value="6" oninput="updateResult()" class="slider">
             </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <h6>Withdrawal Rate in Year 1</h6>
+            <p class="lead"><span id="withdrawalRate">0.00</span>%</p>
         </div>
     </div>
     <div class="row">
@@ -335,6 +339,15 @@
           
         console.log("initialPayment = " + initialPayment);
         console.log("valueAtDeath = " + valueAtDeath);
+          
+        if (savingsAtRetirement==0)
+        {
+            document.querySelector('#withdrawalRate').textContent = (0).formatMoney(2);
+        }
+        else
+        {
+            document.querySelector('#withdrawalRate').textContent = (initialPayment / savingsAtRetirement * 100).formatMoney(2);
+        }
 
         var retirementIncome = (Math.round(PVFutureSum(initialPayment, yearsToRetirement.value, inflationRate.value/100)/1000)*1000).formatMoney(0);
         if (document.getElementById("retirementIncomePV").checked)
@@ -458,12 +471,16 @@
         var yearsToRetirement = document.querySelector('#yearsToRetirement');
         if (yearsToRetirement.value==0)
         {
+            document.getElementById("preRetirementReturnDiv").style.color = "#d3d3d3";
+            document.getElementById("preRetirementReturn").disabled = true;
             document.getElementById("additionalSavingsDiv").style.color = "#d3d3d3";
             document.getElementById("monthlySavings").disabled = true;
             document.getElementById("savingsIncrease").disabled = true;
         }
         else
         {
+            document.getElementById("preRetirementReturnDiv").style.color = "#000000";
+            document.getElementById("preRetirementReturn").disabled = false;
             document.getElementById("additionalSavingsDiv").style.color = "#000000";
             document.getElementById("monthlySavings").disabled = false;
             document.getElementById("savingsIncrease").disabled = false;
