@@ -37,11 +37,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3 mb-3">
+        <div class="col-md-6 mb-6">
             <h6>Current Savings</h6>
-            <p class="lead">$<span id="currentSavingsLabel">10,000</span></p>
+            <p class="lead">$<span id="currentSavingsLabel">0</span></p>
             <div class="slidecontainer">
-                <input type="range" id="currentSavings" min="0" max="2000000" step="5000" value="0" oninput="updateResult()" class="slider">
+                <input type="range" id="currentSavings" min="0" max="5000000" step="5000" value="0" oninput="updateResult()" class="slider">
             </div>
         </div>
         <div class="col-md-3 mb-3">
@@ -117,6 +117,18 @@
             </div>
         </div>
         <div class="col-md-3 mb-3">
+            <h6>Withdrawal Method</h6>
+            <select class="form-control" id="withdrawalMethod" onchange="updateResult()">
+                <option>Growing Annuity</option>
+                <option>Fixed Dollar</option>
+                <option>Fixed Percentage</option>
+                <option>Specified Death Benefit</option>
+                <option>Capital Preservation</option>
+                <option>Growing Perpetuity</option>
+                <option>No Income</option>
+            </select>
+        </div>
+        <div class="col-md-3 mb-3">
             <h6>Years in Retirement</h6>
             <p class="lead"><span id="yearsInRetirementLabel">30</span> years</p>
             <div class="slidecontainer">
@@ -129,18 +141,6 @@
             <div class="slidecontainer">
                 <input type="range" id="postRetirementReturn" min="0" max="12" step="0.25" value="0" oninput="updateResult()" class="slider">
             </div>
-        </div>
-        <div class="col-md-3 mb-3">
-            <h6>Withdrawal Method</h6>
-            <select class="form-control" id="withdrawalMethod" onchange="updateResult()">
-                <option>Growing Annuity</option>
-                <option>Fixed Dollar</option>
-                <option>Fixed Percentage</option>
-                <option>Specified Death Benefit</option>
-                <option>Capital Preservation</option>
-                <option>Growing Perpetuity</option>
-                <option>No Income</option>
-            </select>
         </div>
     </div>
     <div class="row">
