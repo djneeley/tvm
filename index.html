@@ -46,7 +46,7 @@
         </div>
         <div class="col-md-3 mb-3">
             <h6>Years to Retirement</h6>
-            <p class="lead"><span id="yearsToRetirementLabel">30</span> years</p>
+            <p class="lead"><span id="yearsToRetirementLabel">0</span> years</p>
             <div class="slidecontainer">
                 <input type="range" id="yearsToRetirement" min="0" max="50" step="1" value="0" oninput="updateResult()" class="slider">
             </div>
@@ -61,7 +61,7 @@
     </div>
         </div>
     </div>
-    <div class="card mb-3">
+    <div class="card mb-3" id="additionalSavingsDiv">
         <div class="card-body">
     <div class="row">
         <div class="col">
@@ -70,7 +70,7 @@
     </div>
     <div class="row">
         <div class="col-md-3 mb-3">
-            <h6>Monthly Savings</h6>
+            <h6>Savings in Year 1</h6>
             <p class="lead">$<span id="monthlySavingsLabel">1000</span> per month</p>
             <div class="slidecontainer">
                 <input type="range" id="monthlySavings" min="0" max="10000" step="50"  value="0" oninput="updateResult()" class="slider">
@@ -84,7 +84,7 @@
             </div>
         </div>
         <div class="col-md-3 mb-3">
-            <h6>Final Monthly Savings</h6>
+            <h6>Savings in Year <span id="savingsYearNumber">0</span></h6>
             <p class="lead">$<span id="finalMonthlySavingsLabel">1000</span> per month</p>
         </div>
         <div class="col-md-3 mb-3">
@@ -118,7 +118,7 @@
         </div>
         <div class="col-md-3 mb-3">
             <h6>Years in Retirement</h6>
-            <p class="lead"><span id="yearsInRetirementLabel">40</span> years</p>
+            <p class="lead"><span id="yearsInRetirementLabel">30</span> years</p>
             <div class="slidecontainer">
                 <input type="range" id="yearsInRetirement" min="1" max="50" step="1" value="30" oninput="updateResult()" class="slider">
             </div>
@@ -168,7 +168,7 @@
     </div>
     <div class="row">
         <div class="col-md-3 mb-3">
-            <h6>Retirement Income (First Year)</h6>
+            <h6>Income in Year 1</h6>
             <div class="row">
                 <div class="col-8">
                     <p class="lead">$<span id="retirementIncome">0</span></p>
@@ -182,7 +182,7 @@
             </div>
         </div>
         <div class="col-md-3 mb-3">
-            <h6>Retirement Income (Last Year)</h6>
+            <h6>Income in Year <span id="yearNumber">30</span></h6>
             <div class="row">
                 <div class="col-8">
                     <p class="lead">$<span id="finalRetirementIncome">0</span></p>
@@ -241,9 +241,11 @@
         var yearsToRetirement = document.querySelector('#yearsToRetirement');
         document.querySelector('#finalMonthlySavingsLabel').textContent = (FVPresentSum(Number(monthlySavings.value),Number(yearsToRetirement.value),Number(savingsIncrease.value)/100)).formatMoney(0);
         document.querySelector('#yearsToRetirementLabel').textContent = yearsToRetirement.value;
+        document.querySelector('#savingsYearNumber').textContent = yearsToRetirement.value;
         document.querySelector('#additionalSaved').textContent = (Math.round(Number(PVGrowingAnnuityDue(monthlySavings.value * 12, yearsToRetirement.value, 0, savingsIncrease.value/100))/1000)*1000).formatMoney(0);
         var yearsInRetirement = document.querySelector('#yearsInRetirement');
         document.querySelector('#yearsInRetirementLabel').textContent = yearsInRetirement.value;
+        document.querySelector('#yearNumber').textContent = yearsInRetirement.value;
         var valueAtDeath = document.querySelector('#valueAtDeath').value;
         var fixedDollarRate = document.querySelector('#fixedDollarRate');
         document.querySelector('#fixedDollarRateLabel').textContent = (Number(fixedDollarRate.value)).formatMoney(1);
@@ -419,6 +421,19 @@
         
       function disableInputs()
       {
+        var yearsToRetirement = document.querySelector('#yearsToRetirement');
+        if (yearsToRetirement.value==0)
+        {
+            document.getElementById("additionalSavingsDiv").style.color = "#d3d3d3";
+            document.getElementById("monthlySavings").disabled = true;
+            document.getElementById("savingsIncrease").disabled = true;
+        }
+        else
+        {
+            document.getElementById("additionalSavingsDiv").style.color = "#000000";
+            document.getElementById("monthlySavings").disabled = false;
+            document.getElementById("savingsIncrease").disabled = false;
+        }
         var withdrawalMethod = document.getElementById('withdrawalMethod').value;
         if (withdrawalMethod=="Growing Annuity")
         {
