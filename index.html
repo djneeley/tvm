@@ -83,7 +83,7 @@
             <h6>Savings Increase</h6>
             <p class="lead"><span id="savingsIncreaseLabel">3</span>% per year</p>
             <div class="slidecontainer">
-                <input type="range" id="savingsIncrease" min="0" max="10" step="0.5" value="0" oninput="updateResult()" class="slider">
+                <input type="range" id="savingsIncrease" min="0" max="10" step="0.25" value="0" oninput="updateResult()" class="slider">
             </div>
         </div>
         <div class="col-md-3 mb-3">
@@ -239,7 +239,7 @@
         var monthlySavings = document.querySelector('#monthlySavings');
         document.querySelector('#monthlySavingsLabel').textContent = (Number(monthlySavings.value)).formatMoney(0);
         var savingsIncrease = document.querySelector('#savingsIncrease');
-        document.querySelector('#savingsIncreaseLabel').textContent = (Number(savingsIncrease.value)).formatMoney(1);
+        document.querySelector('#savingsIncreaseLabel').textContent = (Number(savingsIncrease.value)).formatMoney(2);
         var preRetirementReturn = document.querySelector('#preRetirementReturn');
         document.querySelector('#preRetirementReturnLabel').textContent = (Number(preRetirementReturn.value)).formatMoney(2);
         var postRetirementReturn = document.querySelector('#postRetirementReturn');
