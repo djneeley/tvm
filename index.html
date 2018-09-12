@@ -55,7 +55,7 @@
             <h6>Return Before Retirement</h6>
             <p class="lead"><span id="preRetirementReturnLabel">8</span>% per year</p>
             <div class="slidecontainer">
-                <input type="range" id="preRetirementReturn" min="0" max="12" step="0.5" value="0" oninput="updateResult()" class="slider">
+                <input type="range" id="preRetirementReturn" min="0" max="12" step="0.25" value="0" oninput="updateResult()" class="slider">
             </div>
         </div>
     </div>
@@ -127,7 +127,7 @@
             <h6>Return During Retirement</h6>
             <p class="lead"><span id="postRetirementReturnLabel">6</span>% per year</p>
             <div class="slidecontainer">
-                <input type="range" id="postRetirementReturn" min="0" max="12" step="0.5" value="0" oninput="updateResult()" class="slider">
+                <input type="range" id="postRetirementReturn" min="0" max="12" step="0.25" value="0" oninput="updateResult()" class="slider">
             </div>
         </div>
         <div class="col-md-3 mb-3">
@@ -234,9 +234,8 @@
         var savingsIncrease = document.querySelector('#savingsIncrease');
         document.querySelector('#savingsIncreaseLabel').textContent = (Number(savingsIncrease.value)).formatMoney(1);
         var preRetirementReturn = document.querySelector('#preRetirementReturn');
-        document.querySelector('#preRetirementReturnLabel').textContent = (Number(preRetirementReturn.value)).formatMoney(1);
+        document.querySelector('#preRetirementReturnLabel').textContent = (Number(preRetirementReturn.value)).formatMoney(2);
         var postRetirementReturn = document.querySelector('#postRetirementReturn');
-        document.querySelector('#postRetirementReturnLabel').textContent = (Number(postRetirementReturn.value)).formatMoney(1);
         var inflationRate = document.querySelector('#inflationRate');
         document.querySelector('#inflationRateLabel').textContent = (Number(inflationRate.value)).formatMoney(2);
         var yearsToRetirement = document.querySelector('#yearsToRetirement');
@@ -254,6 +253,21 @@
         var monthlyReturn = annualToMonthly(preRetirementReturn.value/100);
         var monthlySavingsIncrease = annualToMonthly(savingsIncrease.value/100);
         var savingsAtRetirement = FVPresentSum(currentSavings.value, yearsToRetirement.value*12,monthlyReturn) + FVGrowingAnnuity(monthlySavings.value, yearsToRetirement.value*12, monthlyReturn, monthlySavingsIncrease);
+        
+        if (withdrawalMethod=="Growing Perpetuity")
+        {
+            document.getElementById('postRetirementReturn').min = Number(inflationRate.value);
+            if (Number(inflationRate.value)>Number(postRetirementReturn.value))
+            {
+                postRetirementReturn.value = inflationRate.value;
+            }
+        }
+        else
+        {
+            document.getElementById('postRetirementReturn').min = 0;      
+        }
+        document.querySelector('#postRetirementReturnLabel').textContent = (Number(postRetirementReturn.value)).formatMoney(2);
+          
         if (document.getElementById("savingsAtRetirementPV").checked)
         {
           document.querySelector('#savingsAtRetirement').textContent = (Math.round(savingsAtRetirement/1000)*1000).formatMoney(0);
@@ -326,7 +340,7 @@
         {
             document.querySelector('#retirementIncome').textContent = retirementIncome;
         }
-        
+          
         if (document.getElementById("finalRetirementIncomePV").checked)
         {
           if (withdrawalMethod=="Growing Annuity")
