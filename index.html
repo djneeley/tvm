@@ -44,7 +44,7 @@
             <h6>Current Savings</h6>
             <p class="lead">$<span id="currentSavingsLabel">0</span></p>
             <div class="slidecontainer">
-                <input type="range" id="currentSavings" min="0" max="3000000" step="5000" value="0" oninput="updateResult()" class="slider">
+                <input type="range" id="currentSavings" min="0" max="280" step="1" value="0" oninput="updateResult()" class="slider">
             </div>
         </div>
         <div class="col-md-3 mb-3">
@@ -245,7 +245,20 @@
       {
         disableInputs();
         var currentSavings = document.querySelector('#currentSavings');
-        document.querySelector('#currentSavingsLabel').textContent = (Number(currentSavings.value)).formatMoney(0);
+        var currentSavingsValue = 0;
+        if (currentSavings.value < 101)
+            {
+                currentSavingsValue = 1000 * currentSavings.value;
+            }
+        else if (currentSavings.value < 191)
+            {
+                currentSavingsValue = (currentSavings.value-100)*10000+100000;
+            }
+        else
+            {
+                currentSavingsValue = (currentSavings.value-190)*100000+1000000;
+            }
+        document.querySelector('#currentSavingsLabel').textContent = currentSavingsValue.formatMoney(0);
         var monthlySavings = document.querySelector('#monthlySavings');
         document.querySelector('#monthlySavingsLabel').textContent = (Number(monthlySavings.value)).formatMoney(0);
         var savingsIncrease = document.querySelector('#savingsIncrease');
@@ -271,7 +284,7 @@
         var withdrawalMethod = document.getElementById('withdrawalMethod').value;
         var monthlyReturn = annualToMonthly(preRetirementReturn.value/100);
         var monthlySavingsIncrease = annualToMonthly(savingsIncrease.value/100);
-        var savingsAtRetirement = FVPresentSum(currentSavings.value, yearsToRetirement.value*12,monthlyReturn) + FVGrowingAnnuity(monthlySavings.value, yearsToRetirement.value*12, monthlyReturn, monthlySavingsIncrease);
+        var savingsAtRetirement = FVPresentSum(currentSavingsValue, yearsToRetirement.value*12,monthlyReturn) + FVGrowingAnnuity(monthlySavings.value, yearsToRetirement.value*12, monthlyReturn, monthlySavingsIncrease);
         
         if (withdrawalMethod=="Growing Perpetuity")
         {
